@@ -1,9 +1,10 @@
 from openpyxl import load_workbook
 
-# target_excel_file = "new_format_excel.csv"
+# target_excel_file = 'last_format.xlsx'
 # sheet_name = 'new_format_excel'
-target_excel_file = 'formated_excel.xlsx'
-sheet_name = 'new_format_excel'
+
+target_excel_file = "last_format2.xlsx"
+sheet_name = "last_format2.xlsx"
 workbook = load_workbook(filename=target_excel_file)
 
 list_of_merge = []
