@@ -1,12 +1,19 @@
 import pandas
 import datetime
 
+excel_to_write = "new_format_excel.csv"
+blank_row = pandas.Series(index=['blank'])
+blank_row.blank = "*"
+
+
+
 weekDays = {'sat':0, 'sun':1, 'mon':2, 'tue':3, 'wen':4, 'thu':5, 'fri':6}
 RweekDays = {num:name for name, num in weekDays.items()}
 
 # hourTable = {8:"08:00", 9:"09:00", 10:"10:00", 11:"11:00", 12:"12:00", 13:"13:00", 14:"14:00", 15:"15:00", 16:"16:00", 17:"17:00"}
 hourTable = [f'{i//2 + 8:0>2}:00 - {i//2 + 8:0>2}:30' if i%2 == 0 else f'{i//2 + 8:0>2}:30 - {(i+1)//2 + 8:0>2}:00' for i in range(18)]
-dfIndex = ['master' if i%2 == 1 else list(weekDays.keys())[i//2] for i in range(10)]
+# dfIndex = ['master' if i%2 == 1 else list(weekDays.keys())[i//2] for i in range(10)]
+dfIndex = list(weekDays.keys())
 print(dfIndex)
 
 
@@ -95,19 +102,24 @@ class Sch:
         #print(f'plan number [{plan_counter[0]}] : ')
         print()
 
-        header_df = pandas.DataFrame()
-        print(header_df)
-        header_df.to_csv('res.xlsx',mode='a')
+        # header_df = pandas.DataFrame()
+        # print(header_df)
+        
+        # header_df.to_csv('res.xlsx',mode='a')
+
+        blank_row.to_csv(excel_to_write,mode='a')
         df = pandas.DataFrame(index=dfIndex, columns=hourTable)
 
         for index, row in enumerate(self.__calender):
             for item in row:
                 start_point = (item.start_time.hour - 8) * 2 + (item.start_time.minute //30)
                 end_point = (item.end_time.hour - 8) * 2 + (item.end_time.minute //30)
-                df.iloc[index* 2, start_point:end_point] = item.name
-                df.iloc[(index * 2) + 1, start_point:end_point] = item.master
+                # df.iloc[index* 2, start_point:end_point] = item.name
+                # df.iloc[(index * 2) + 1, start_point:end_point] = item.master
+
+                df.iloc[index, start_point : end_point] = str(item)
             
-        df.to_csv('res.csv',mode='a')
+        df.to_csv(excel_to_write,mode='a')
             
 
 
@@ -162,6 +174,9 @@ class Lesson:
     @property
     def master(self):
         return self.__master
+    
+    def __str__(self):
+        return f'{self.name}\n{self.master}'
         
 
 lesson_dict = {}
