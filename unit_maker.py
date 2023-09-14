@@ -1,7 +1,8 @@
 import pandas
 import datetime
 
-excel_to_write = "new_format_excel.csv"
+excel_to_write = "primary.csv"
+excel_to_read = "units2.xlsx"
 blank_row = pandas.Series(index=['blank'])
 blank_row.blank = "*"
 
@@ -181,7 +182,7 @@ class Lesson:
 
 lesson_dict = {}
 sub_list = []
-table = pandas.read_excel('units2.xlsx')
+table = pandas.read_excel(excel_to_read)
 
 for sub in table.loc[:,'name'].unique():
     sub_list.append(sub)

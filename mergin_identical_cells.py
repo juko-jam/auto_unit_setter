@@ -3,8 +3,8 @@ from openpyxl import load_workbook
 # target_excel_file = 'last_format.xlsx'
 # sheet_name = 'new_format_excel'
 
-target_excel_file = "last_format2.xlsx"
-sheet_name = "last_format2.xlsx"
+target_excel_file = "_primary.xlsx"
+sheet_name = "primary"
 workbook = load_workbook(filename=target_excel_file)
 
 list_of_merge = []
