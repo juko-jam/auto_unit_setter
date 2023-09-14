@@ -25,6 +25,11 @@ exam date -> didn't provide a finall exam check so currently providing this cell
 
 (see units.xlsx/units2.xlsx to understand how to make a valid spread sheet)
 
+Caution !
+the order of lessons is important and will effect the final results
+(for example if you put Lesson1 at first and Lesson2 later you will get different results comparing to when you put Lesson2 at first and Lesson 1 later)
+it is recommended to order your lessons based on their significance to your totall educational plans and stuff!
+
 
 this is how you make your lessons' excel file. now how to run program ?
 
